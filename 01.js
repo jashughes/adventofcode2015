@@ -3,7 +3,7 @@ var fs = require("fs");
 const input = fs.readFileSync('01.txt', 'utf8').toString().split("");
 
 // parse input
-var numbery = input.map((v) => {return v == '(' ? 1 : -1})
+var numbery = input.map((v) => v === '(' ? 1 : -1)
 
 // part 1
 console.log("Part 1: ", numbery.reduce((a, b) => a + b, 0))
