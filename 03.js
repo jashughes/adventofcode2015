@@ -18,13 +18,20 @@ const address = (d) => d[0] + ',' + d[1];
 
 function delivery(dirs) {
   spot = [0, 0];
-  houses = new Set();
-  for (let i = 0; i < dirs.length; i++) {
-    houses.add(address(spot));
-    spot = move(spot, dirs[i]);
-  }
-  houses.add(address(spot));
+  houses = new Set([address(spot)]);
+  dirs.forEach(v => { spot = move(spot, v); houses.add(address(spot)); })
   return houses;
 }
 
 console.log("Part 1:", delivery(dirs).size)
+
+// part 2
+function union(a, b){ 
+  c = new Set(a);
+  b.forEach(v => c.add(v));
+  return c
+}
+const santa = delivery(dirs.filter((v, i) => i % 2 === 0));
+const robo  = delivery(dirs.filter((v, i) => i % 2 === 1));
+
+console.log("Part 2:", (union(santa, robo)).size)
