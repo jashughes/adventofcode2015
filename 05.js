@@ -10,6 +10,8 @@ const nice3 = a => a.match(/(ab)|(cd)|(pq)|(xy)/) === null;
 console.log(
   "Part 1:", 
   input
-    .map(v => nice1(v) && nice2(v) && nice3(v))
-    .reduce((a, b) => a + b, 0)
+    .filter(v => nice1(v) && nice2(v) && nice3(v))
+    .length
 )
+
+// part 2
