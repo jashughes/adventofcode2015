@@ -18,4 +18,4 @@ find_first_match <- function(input, zeroes){
 print(paste0("Part 1: ", find_first_match(input, 5)))
 
 # part 2
-print(paste0("Part 1: ", find_first_match(input, 6)))
+print(paste0("Part 2: ", find_first_match(input, 6)))
