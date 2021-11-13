@@ -1,35 +1,13 @@
 input = readlines("07.txt")
 
-# bit operation functions
-
-function bitNOT(x)
-    parse(Int, bitstring(~UInt16(x)); base = 2)
-end
-
-function bitAND(x, y)
-    parse(Int, bitstring(UInt16(x) & UInt16(y)); base = 2)
-end
-
-function bitOR(x, y)
-    parse(Int, bitstring(UInt16(x) | UInt16(y)); base = 2)
-end
-
-function bitSHIFTL(x, n)
-    parse(Int, bitstring(UInt16(x) << n); base = 2)
-end
-
-function bitSHIFTR(x, n)
-    parse(Int, bitstring(UInt16(x) >>> n); base = 2)
-end
-
 # parse instructions
 
 function wire(str, wn, w)
-    occursin(r"AND", str) && return bitAND(wn[1], wn[2])
-    occursin(r"OR", str) && return bitOR(wn[1], wn[2])
-    occursin(r"NOT", str) && return bitNOT(wn[1])
-    occursin(r"LSHIFT", str) && return bitSHIFTL(wn[1], wn[2])
-    occursin(r"RSHIFT", str) && return bitSHIFTR(wn[1], wn[2])
+    occursin(r"AND", str) && return Int(UInt16(wn[1]) & UInt16(wn[2]))
+    occursin(r"OR", str) && return Int(UInt16(wn[1]) | UInt16(wn[2]))
+    occursin(r"NOT", str) && return Int(~UInt16(wn[1]))
+    occursin(r"LSHIFT", str) && return Int(UInt16(wn[1]) << wn[2])
+    occursin(r"RSHIFT", str) && return Int(UInt16(wn[1]) >>> wn[2])
     wn[1]
 end
 
