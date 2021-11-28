@@ -2,25 +2,18 @@ input = parse.(Int, split(readlines("10.txt")[1], ""))
 
 function looksay(look)
     say = []
-    if length(look) == 1
-        return [1, look[1]]
-    end
-
-    c = 1
-    l = look[1]
+    c, l = 1, look[1]
+    if length(look) == 1 return [c, l] end
     
     for i in 2:length(look)
         if l == look[i]
             c += 1
         else
-            push!(say, c)
-            push!(say, l)
-            c = 1
-            l = look[i]
+            push!(say, c, l)
+            c, l = 1, look[i]
         end
     end
-    push!(say, c)
-    push!(say, l)
+    push!(say, c, l)
     say
 end
 
